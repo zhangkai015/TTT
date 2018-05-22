@@ -16,4 +16,23 @@ import org.tis.tools.asf.module.er.service.IERCategoryService;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class ERCategoryServiceImpl extends ServiceImpl<ERCategoryMapper, ERCategory> implements IERCategoryService {
+    @Override
+    public ERCategory queryERCategoryDetailById(String erCategoryId) {
+        return null;
+    }
+
+    @Override
+    public void addERCategory(ERCategory eercategory) {
+
+    }
+
+    @Override
+    public void deleteERCategoryById(String erCategoryId) {
+
+    }
+
+    @Override
+    public void updateERCategoryById(String erCategoryId) {
+
+    }
 }

@@ -16,4 +16,23 @@ import org.tis.tools.asf.module.er.service.IERTableService;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class ERTableServiceImpl extends ServiceImpl<ERTableMapper, ERTable> implements IERTableService {
+    @Override
+    public ERTable queryERTableDetailById(String erTableId) {
+        return null;
+    }
+
+    @Override
+    public void addERTable(ERTable ertable) {
+
+    }
+
+    @Override
+    public void updateERTableById(String erTableId) {
+
+    }
+
+    @Override
+    public void deleteERTableById(String erTableId) {
+
+    }
 }

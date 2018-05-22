@@ -26,6 +26,14 @@ public class ERCategory {
 
     public static final String COLUMN_NAME = "name";
 
+    public static final String COLUMN_CREATETIME = "createtime";
+
+    public static final String COLUMN_LASTUPDATE = "lastupdate";
+
+    public static final String COLUMN_UPDATOR = "updator";
+
+    public static final String COLUMN_STATUS= "data_status";
+
     /**
      * ID 标识
      */
@@ -42,6 +50,29 @@ public class ERCategory {
      * 分类名称
      */
     private String name;
+
+    /**
+     * 创建时间
+     */
+    private String createtime;
+
+    /**
+     * 最近更新时间
+     */
+    @NotBlank(groups = {AddValidateGroup.class}, message = "最后修改时间不能为空")
+    private String lastupdate;
+
+    /**
+     * 最近更新人员
+     */
+    @NotBlank(groups = {AddValidateGroup.class}, message = "最后修改人员不能为空")
+    private String updator;
+
+    /**
+     * 数据状态
+     */
+    @NotBlank(groups = {AddValidateGroup.class}, message = "数据状态不能为空")
+    private String data_status;
 
     /**
      * 分类下的表集合

@@ -16,4 +16,13 @@ import org.tis.tools.asf.module.er.service.IERColumnService;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class ERColumnServiceImpl extends ServiceImpl<ERColumnMapper, ERColumn> implements IERColumnService {
+    @Override
+    public void updateERColumnByOther(String sql) {
+
+    }
+
+    @Override
+    public String updateERColumnCreatSql(ERColumn ercolumn) {
+        return null;
+    }
 }

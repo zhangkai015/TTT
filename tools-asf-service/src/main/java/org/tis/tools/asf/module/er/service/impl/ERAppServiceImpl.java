@@ -49,7 +49,7 @@ public class ERAppServiceImpl extends ServiceImpl<ERAppMapper, ERApp> implements
         }
         EntityWrapper<ERCategory> cateWrapper = new EntityWrapper<>();
         cateWrapper.eq(ERCategory.COLUMN_APP_ID, erAppId);
-        List<ERCategory> categoryList = categoryService.selectList(cateWrapper);
+        List<ERCategory> categoryList =categoryService.selectList(cateWrapper);
         Map<String, ERCategory> categoryMap = categoryList.stream().collect(Collectors.toMap(ERCategory::getId, c -> c));
         erApp.setCategoryList(categoryList);
         List<String> categoryIds = categoryList.stream().map(ERCategory::getId).collect(Collectors.toList());
@@ -76,6 +76,44 @@ public class ERAppServiceImpl extends ServiceImpl<ERAppMapper, ERApp> implements
             }
         }
         return erApp;
+    }
+
+    @Override
+    public ERApp queryAllERApp() {
+        return null;
+    }
+
+    @Override
+    public void deleteERAppById(String erAppId) {
+        //删除操作前先查询是否有该记录
+        ERApp erApp = this.baseMapper.selectById(erAppId);
+        if (erApp == null) {
+            throw new CodeBuilderException("没有找到对应的ER应用");
+        }else{
+            //删除操作
+            this.baseMapper.deleteById(erAppId);
+        }
+
+    }
+
+    @Override
+    public void addERApp(ERApp erApp) {
+
+    }
+
+    @Override
+    public ERApp queryERAppByDate(String date) {
+        return null;
+    }
+
+    @Override
+    public ERApp queryERAppByUpdator(String updator) {
+        return null;
+    }
+
+    @Override
+    public ERApp queryERAppByOther(String sql) {
+        return null;
     }
 
     @Override

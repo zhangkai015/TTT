@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.tis.tools.core.web.controller.BaseController;
-import org.tis.tools.core.validation.AddValidateGroup;
-import org.tis.tools.core.validation.UpdateValidateGroup;
-import org.tis.tools.core.web.vo.ResultVO;
-import org.tis.tools.core.web.vo.SmartPage;
 import org.tis.tools.asf.module.er.entity.ERApp;
 import org.tis.tools.asf.module.er.service.IERAppService;
+import org.tis.tools.core.validation.AddValidateGroup;
+import org.tis.tools.core.validation.UpdateValidateGroup;
+import org.tis.tools.core.web.controller.BaseController;
+import org.tis.tools.core.web.vo.ResultVO;
+import org.tis.tools.core.web.vo.SmartPage;
 
 import java.util.List;
 
@@ -24,6 +24,13 @@ public class ERAppController extends BaseController<ERApp> {
     @Autowired
     private IERAppService appService;
 
+    /**
+     * 新增机构综合
+     *
+     * @param app
+     * @return
+     */
+   // @OperateLog(type = OperateType.ADD,desc = "新增ERApp")
     @PostMapping("/add")
     public ResultVO add(@RequestBody @Validated({AddValidateGroup.class}) ERApp app) {
         appService.insert(app);
@@ -36,15 +43,29 @@ public class ERAppController extends BaseController<ERApp> {
         return ResultVO.success("修改成功！");
     }
 
+    /**
+     * 通过ID删除ERApp
+     *
+     * @param id
+     * @return
+     *
+     */
     @DeleteMapping("/{id}")
     public ResultVO delete(@PathVariable @NotBlank(message = "id不能为空") String id) {
-        appService.deleteById(id);
+        appService.deleteERAppById(id);
         return ResultVO.success("删除成功");
     }
 
+    /**
+     * ERApp通过ID明细查询
+     *
+     * @param id
+     * @return
+     *
+     */
     @GetMapping("/{id}")
     public ResultVO detail(@PathVariable @NotBlank(message = "id不能为空") String id) {
-        ERApp app = appService.selectById(id);
+        ERApp app = appService.queryERAppDetailById(id);
         if (app == null) {
             return ResultVO.error("00001", "找不到对应记录或已经被删除！");
         }
@@ -90,5 +111,6 @@ public class ERAppController extends BaseController<ERApp> {
         appService.parseERM(file.getName(), xmlStr);
         return ResultVO.success("上传成功！");
     }
+
 
 }

@@ -22,14 +22,20 @@ import java.util.List;
 @Data
 @TableName("er_app")
 public class ERApp {
-    //自动生成ID
+
     public static final String COLUMN_ID = "id";
-    //ERApp名称，例如ABF.erm,name=ABF
+
     public static final String COLUMN_NAME = "name";
-    //添加描述
+
     public static final String COLUMN_DESC = "desc";
 
-    //新增4个公共字段创建时间，最近更新时间，最近更新人员，数据状态
+    public static final String COLUMN_CREATETIME = "createtime";
+
+    public static final String COLUMN_LASTUPDATE = "lastupdate";
+
+    public static final String COLUMN_UPDATOR = "updator";
+
+    public static final String COLUMN_STATUS= "data_status";
 
     @Null(groups = {AddValidateGroup.class}, message = "新增时ID由系统指定")
     @NotBlank(groups = {UpdateValidateGroup.class}, message = "修改时ID不能为空")
@@ -40,6 +46,29 @@ public class ERApp {
     private String name;
 
     private String desc;
+
+    /**
+     * 创建时间
+     */
+    private String createtime;
+
+    /**
+     * 最近更新时间
+     */
+    @NotBlank(groups = {AddValidateGroup.class}, message = "最后修改时间不能为空")
+    private String lastupdate;
+
+    /**
+     * 最近更新人员
+     */
+    @NotBlank(groups = {AddValidateGroup.class}, message = "最后修改人员不能为空")
+    private String updator;
+
+    /**
+     * 数据状态
+     */
+    @NotBlank(groups = {AddValidateGroup.class}, message = "数据状态不能为空")
+    private String data_status;
 
     @TableField(exist = false)
     private List<ERCategory> categoryList;
